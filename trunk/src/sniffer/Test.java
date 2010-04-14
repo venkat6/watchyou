@@ -14,6 +14,7 @@ import org.jnetpcap.protocol.tcpip.Http.ContentType;
 
 public class Test
 {
+	/*
 		public static class PrintHtml implements HttpHandler {
                 private Html html = new Html();
                 public void processHttp(Http http) {
@@ -27,11 +28,11 @@ public class Test
                         System.out.println("A RESPONSE WAS FOUND!!!");
                 }
         }
-
+*/
         public static void main(String[] args) {
         	
             HttpAnalyzer httpAnalyzer = JRegistry.getAnalyzer(HttpAnalyzer.class);
-            httpAnalyzer.add( new Test.PrintHtml() );
+            //httpAnalyzer.add( new Test.PrintHtml() );
             StringBuilder errbuf = new StringBuilder();
            
             Pcap pcap= Pcap.openOffline("specific.pcap", errbuf);
