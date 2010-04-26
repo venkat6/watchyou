@@ -15,13 +15,8 @@ import gui.BareBonesBrowserLaunch;
 
 public class HttpParser implements HttpHandler {
 
-	
 	private Html html = new Html();
 	
-	private static HashMap<Integer, HashMap<Integer, HttpBag>> mainMap = 
-		new HashMap<Integer, HashMap<Integer, HttpBag>>();
-	
-
 	public void processHttp(FragmentAssembly ass)
 	{
 		JPacket packet = ass.getPacket();
@@ -33,7 +28,7 @@ public class HttpParser implements HttpHandler {
 			JPacket first = ass.getFragmentSequence().getPacketSequence().get(0);
 			
 			processHighLevelHeaders(first, http.getMessageType());
-			
+			CacheMap.ScanResults();
 			// then call our handler on the http reassembled packet
 			//processHttpPacket(http);
 		}
@@ -43,6 +38,7 @@ public class HttpParser implements HttpHandler {
     public void processHttp(Http http) {
 		processHighLevelHeaders(http.getPacket(), http.getMessageType());
 		//processHttpPacket(http);
+		
 	}
 	
 	private void processHighLevelHeaders(JPacket p, Http.MessageType type)
@@ -64,24 +60,19 @@ public class HttpParser implements HttpHandler {
 		{
 			System.out.println("Source IP:   " + ip.sourceToInt());
 			System.out.println("Source port: " + tcp.source());
-			if(!mainMap.containsKey(ip.sourceToInt()))
-			{
-				mainMap.put(ip.sourceToInt(), new HashMap<Integer, HttpBag>());
-			}
-			HashMap<Integer, HttpBag> ipMap = mainMap.get(ip.sourceToInt());
-			ipMap.put(tcp.source(), new HttpBag(p));
+			CacheMap.insertRequest(ip.sourceToInt(), tcp.source(), new HttpBag(p));
+			//System.err.println("Unknown MessageType\n" + p.toHexdump());
+		}
+		else if(type == Http.MessageType.RESPONSE)
+		{
+			CacheMap.insertResponse(ip.destinationToInt(), tcp.destination(), p);
+			System.out.println("Dest IP:     " + ip.destinationToInt());
+			System.out.println("Dest port:   " + tcp.destination());
 		}
 		else
 		{
-			if(!mainMap.containsKey(ip.destinationToInt()))
-			{
-				System.err.println("ERROR - key does not exist");
-				//mainMap.put(ip.sourceToInt(), new HashMap<Integer, HttpBag>());
-			}
-			HttpBag bag = mainMap.get(ip.destinationToInt()).get(tcp.destination());
-			bag.setResponsePacket(p);
-			System.out.println("Dest IP:     " + ip.destinationToInt());
-			System.out.println("Dest port:   " + tcp.destination());
+			System.err.println("Unknown MessageType\n" + p.toHexdump());
+			p.getHeader(new Http());
 		}
 		
 	}
@@ -116,8 +107,6 @@ public class HttpParser implements HttpHandler {
 	                		try {
 	                    		
 	                    		int uniqueIdentifier = http.hashCode();
-	                    		JPacket packet = http.getPacket();
-	                    		boolean doesit = packet.hasHeader(Tcp.ID);
 	                			fs = new FileOutputStream("C:\\" + uniqueIdentifier + ".html");
 	                            Html theHtml = http.getPacket().getHeader(html);
 	                            if(theHtml != null)
@@ -143,34 +132,19 @@ public class HttpParser implements HttpHandler {
 		                            	}
 		                        		
 		
-		                            	BareBonesBrowserLaunch.openURL("C:\\" + uniqueIdentifier + ".html");
+		                            	//BareBonesBrowserLaunch.openURL("C:\\" + uniqueIdentifier + ".html");
 		                            	//System.out.println(page);
 	                        		}
 	                        		else
 	                        		{
-	                        			System.out.println("NO CONTENT-ENCONDING PRESENT");
-	                        			System.out.println(page);
+	                        			System.err.println("NO CONTENT-ENCONDING PRESENT");
+	                        			System.err.println(page);
 	                        		}
 	                        		
 	                        	}
 	                            else
 	                            {
-	                            	System.out.println("UNABLE TO PARSE HTML, HERE'S THE HEADER:");
-	                            	/*if(http.fieldValue(Response.ResponseCode).equals("200")) // TODO - this isn't passing, so we aren't setting it correctly in the c++ code?
-	                            	{
-	                            		System.out.println(http.getPayload());
-	                            	//if(http.getUTF8Char(0) != '<')
-	                            	//{
-	                            		GZIPOutputStream gout = new GZIPOutputStream(fs);
-	                            		gout.write(http.getPayload());
-	                            		gout.close();
-	                            	//}
-	                            	}
-	                            	else
-	                            	{*/
-	                            		//System.out.println("PAYLOAD IS OF LENGTH 0: ");
-	                            		//System.out.println(http.getPacket());
-	                            	//}
+	                            	System.err.println("UNABLE TO PARSE HTML");
 	                            }
 	                		} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
