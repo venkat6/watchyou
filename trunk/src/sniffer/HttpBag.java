@@ -1,6 +1,8 @@
 package sniffer;
 
 import org.jnetpcap.packet.JPacket;
+import org.jnetpcap.protocol.tcpip.Http;
+import org.jnetpcap.protocol.tcpip.Http.Request;
 
 public class HttpBag {
 	
@@ -16,7 +18,9 @@ public class HttpBag {
 	
 	public String getUrl()
 	{
-		return _url;
+		Http http = new Http();
+		_request.getHeader(http);
+		return http.fieldValue(Request.Host) + http.fieldValue(Request.RequestUrl);
 	}
 	
 	public JPacket getRequestPacket()

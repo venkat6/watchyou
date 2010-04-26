@@ -45,8 +45,8 @@ public class Main {
 		
 		
         
-		Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, 1, 4444, errbuf); // wireless
-        //Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // ethernet
+		//Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, 1, 4444, errbuf); // wireless
+        Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // ethernet
         //Pcap pcap= Pcap.openOffline("specific.pcap", errbuf);
         if (pcap == null) {
                 System.err.println(errbuf.toString());
