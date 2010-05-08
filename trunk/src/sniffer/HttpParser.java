@@ -7,6 +7,8 @@ import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.*;
 import org.jnetpcap.protocol.tcpip.Http.*;
 
+import util.PathHash;
+
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
@@ -27,58 +29,66 @@ public class HttpParser implements HttpHandler {
 			// which has all the other headers (IP, TCP...)
 			JPacket first = ass.getFragmentSequence().getPacketSequence().get(0);
 			
-			processHighLevelHeaders(first, http.getMessageType());
-			CacheMap.ScanResults();
+			HttpBag bag = processHighLevelHeaders(first, packet, http.getMessageType());
+			//CacheMap.ScanResults();
 			// then call our handler on the http reassembled packet
-			//processHttpPacket(http);
+			//processHttpPacket(http, http.getMessageType());
 		}
 	}
 	
 	@Override
     public void processHttp(Http http) {
-		processHighLevelHeaders(http.getPacket(), http.getMessageType());
-		//processHttpPacket(http);
+		HttpBag bag = processHighLevelHeaders(http.getPacket(), http.getPacket(), http.getMessageType());
+		//processHttpPacket(http, http.getMessageType());
 		
 	}
 	
-	private void processHighLevelHeaders(JPacket p, Http.MessageType type)
+	// note - fullPacket and headerPacket may be the same object, but headerPacket is the packet which
+	// contains the detailed Http/IP/TCP headers, and the fullPacket is the packet which contains the 
+	// full payload (reassembled possibly)
+	private HttpBag processHighLevelHeaders(JPacket headerPacket, JPacket fullPacket, Http.MessageType type)
 	{
 		Ip4 ip = new Ip4();
-		if(!p.hasHeader(ip))
+		if(!headerPacket.hasHeader(ip))
 		{
 			System.err.println("NO IP HEADER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			return;
+			return null;
 		}
 		Tcp tcp = new Tcp();
-		if(!p.hasHeader(tcp))
+		if(!headerPacket.hasHeader(tcp))
 		{
 			System.err.println("NO TCP HEADER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			return;
+			return null;
 		}
 		
 		if(type == Http.MessageType.REQUEST)
 		{
-			System.out.println("Source IP:   " + ip.sourceToInt());
-			System.out.println("Source port: " + tcp.source());
-			CacheMap.insertRequest(ip.sourceToInt(), tcp.source(), new HttpBag(p));
+			//System.out.println("Source IP:   " + ip.sourceToInt());
+			//System.out.println("Source port: " + tcp.source());
+			HttpBag bag = new HttpBag(headerPacket);
+			CacheMap.insertRequest(ip.sourceToInt(), tcp.source(), bag);
 			//System.err.println("Unknown MessageType\n" + p.toHexdump());
+			return bag;
 		}
 		else if(type == Http.MessageType.RESPONSE)
 		{
-			CacheMap.insertResponse(ip.destinationToInt(), tcp.destination(), p);
-			System.out.println("Dest IP:     " + ip.destinationToInt());
-			System.out.println("Dest port:   " + tcp.destination());
+			HttpBag bag = CacheMap.insertResponse(ip.destinationToInt(), tcp.destination(), headerPacket, fullPacket);
+			//System.err.println("HASHED PATH: " + PathHash.GetHashedFilePath(bag.getUrl()));
+			//System.out.println("Dest IP:     " + ip.destinationToInt());
+			//System.out.println("Dest port:   " + tcp.destination());
+			return bag;
 		}
 		else
 		{
-			System.err.println("Unknown MessageType\n" + p.toHexdump());
-			p.getHeader(new Http());
+			System.err.println("Unknown MessageType\n" + headerPacket.toHexdump());
+			headerPacket.getHeader(new Http());
+			return null;
 		}
 		
 	}
 	
 	
-	private void processHttpPacket(Http http)
+	private void processHttpPacket(Http http, Http.MessageType messageType)
 	{
         //System.out.printf("\n#%d %s", http.getPacket().getFrameNumber(), http.toString());
         
@@ -102,7 +112,7 @@ public class HttpParser implements HttpHandler {
 	                case HTML:
 	                        
 	                		//System.out.printf("\n#%d %s", http.getPacket().getFrameNumber(), http.toString());
-	                        
+	                        /*
 	                		FileOutputStream fs = null;	
 	                		try {
 	                    		
@@ -163,11 +173,14 @@ public class HttpParser implements HttpHandler {
 										e.printStackTrace();
 									}
 							}
-	                        
+	                        */
+	                	
+	                		
+	                	
 	                        break;
 	                default:
-	                        System.out.printf("Unknown content type: %s\t-\t%s\n", type, real_content_type);
-	                        System.out.println(http.getPacket());
+	                        //System.out.printf("Unknown content type: %s\t-\t%s\n", type, real_content_type);
+	                        //System.out.println(http.getPacket());
 	                        break;
 	        }
         }

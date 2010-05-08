@@ -1,9 +1,14 @@
 package sniffer;
 
+import java.net.MalformedURLException;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.regex.*;
 
 import org.jnetpcap.packet.*;
+import org.jnetpcap.protocol.tcpip.Http;
+import org.jnetpcap.protocol.tcpip.Http.Response;
+
+import util.PathHash;
 
 public class CacheMap { // implements Iterable<HttpBag>
 
@@ -20,7 +25,7 @@ public class CacheMap { // implements Iterable<HttpBag>
 		ipMap.put(port, bag);
 	}
 	
-	public static void insertResponse(int ip, int port, JPacket p)
+	public static HttpBag insertResponse(int ip, int port, JPacket headerPacket, JPacket dataPacket)
 	{
 		if(!mainMap.containsKey(ip))
 		{
@@ -28,7 +33,37 @@ public class CacheMap { // implements Iterable<HttpBag>
 			//mainMap.put(ip.sourceToInt(), new HashMap<Integer, HttpBag>());
 		}
 		HttpBag bag = mainMap.get(ip).get(port);
-		bag.setResponsePacket(p);
+		bag.setResponseHeaderPacket(headerPacket);
+		Http http = bag.getResponseHeaderPacket().getHeader(new Http());
+		try {
+			if(http.hasField(Response.ResponseCode) && !http.fieldValue(Response.ResponseCode).equals("304"))
+			{
+				bag.saveToDisk(PathHash.GetHashedFilePath((bag.getUrl())), dataPacket);
+				if(http.fieldValue(Response.Content_Type).contains("text/html"))
+				{
+					String line = bag.getFirstLine();
+					if(line != null)
+					{
+						Pattern doctypePattern = Pattern.compile("\\A\\s*<!DOCTYPE HTML.*$", Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
+						Pattern htmlPattern = Pattern.compile("\\A\\s*<html.*$", Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
+						if(doctypePattern.matcher(line).matches() || htmlPattern.matcher(line).matches())
+						{
+							System.out.println("Navigating to url: " + bag.getUrl() + "\n\twith Hashed URL: " + PathHash.GetHashedFilePath(bag.getUrl()) + "\n");
+							Main._gui.navigate(PathHash.GetHashedUrl(bag.getUrl()));
+						}
+					}
+				}
+			}
+		} 
+		catch (NullPointerException e)
+		{
+			// do nothing
+		}
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bag;
 	}
 	
 	public static String getRequestUrlForIpAndPort(int ip, int port)
