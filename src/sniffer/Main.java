@@ -5,15 +5,21 @@ import org.jnetpcap.PcapIf;
 import org.jnetpcap.packet.*;
 import org.jnetpcap.packet.analysis.JController;
 import org.jnetpcap.protocol.tcpip.*;
+
+import gui.MainFrame;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFrame;
 
 public class Main {
 
 	/**
      * @param args
+	 * @throws Exception 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
     	
         HttpAnalyzer httpAnalyzer = JRegistry.getAnalyzer(HttpAnalyzer.class);
         httpAnalyzer.add( new HttpParser() );
@@ -47,19 +53,29 @@ public class Main {
         
 		//Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, 1, 4444, errbuf); // wireless
         Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // ethernet
-        //Pcap pcap= Pcap.openOffline("specific.pcap", errbuf);
+        //Pcap pcap= Pcap.openOffline("chunked.pcap", errbuf);
         if (pcap == null) {
                 System.err.println(errbuf.toString());
                 return;
         }
-       
         
+        /* SET UP UI */
+		
+		_gui = new MainFrame();
+		_gui.setTitle("My browser");
+		//_gui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setSize(600, 800);
+		_gui.setVisible(true);
+		_gui.navigate("about:");
         
+		/* END UI SETUP - NOW START THE FRIGGIN MACHINE! */
         
         pcap.loop(Pcap.LOOP_INFINATE, JRegistry.getAnalyzer(JController.class), null);
         //System.out.println("RET: "+ret);
         
         pcap.close();
     }
+    public static MainFrame _gui;
 }
 

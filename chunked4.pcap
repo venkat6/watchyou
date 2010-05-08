@@ -1,0 +1,702 @@
+GET /httpgallery/chunked/ HTTP/1.1
+Host: www.httpwatch.com
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 115
+Connection: keep-alive
+Referer: http://www.google.com/search?q=transfer+encoding+chunked&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a
+Cookie: __utma=27892197.1457797105.1272838090.1273036418.1273123201.8; __utmz=27892197.1273123201.8.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=transfer%20encoding%20chunked; __utmc=27892197; __utmb=27892197.6.10.1273123201
+Pragma: no-cache
+Cache-Control: no-cache
+
+HTTP/1.1 200 OK
+Date: Thu, 06 May 2010 05:32:05 GMT
+Server: Microsoft-IIS/6.0
+Expires: -1
+X-Powered-By: ASP.NET
+X-AspNet-Version: 2.0.50727
+Transfer-Encoding: chunked
+Cache-Control: no-cache, no-store
+Pragma: no-cache
+Expires: -1
+Content-Type: text/html
+
+7b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+2d
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+2
+
+
+2
+
+
+2
+
+
+8
+<head>
+
+3
+	
+
+3
+	
+
+3
+	
+
+26
+<title>HTTP Chunked Encoding</title>
+
+4b
+<meta name="keywords" content="http, chunked, encoding, content-length"/>
+
+3
+	
+
+4d
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+39
+	<meta http-equiv="Content-Language" content="en-us" />
+
+49
+	<link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/>
+
+4d
+	<link rel="stylesheet" href="../../css/simtecv6.css?v9" type="text/css" />
+
+3
+	
+
+3
+	
+
+1a
+	<style type="text/css">
+
+14
+	.topmenu #homeTab
+
+4
+	{
+
+4b
+		background: url("../../images/spriteme1.png") no-repeat -10px -160px;	}
+
+3
+	
+
+17
+	.leftnav #encodingLk
+
+4
+	{
+
+13
+		color: #EC6901;
+
+47
+		background: url('../../images/left_448x1.png') repeat-y -224px 0px;
+
+4
+	}
+
+b
+	</style>
+
+3
+	
+
+9
+</head>
+
+8
+<body>
+
+1d
+<div id="sub-background">  
+
+2
+
+
+18
+	<div id="sub-header">
+
+8
+		<h1>
+
+ae
+		<a href="../../" title="HttpWatch: An HTTP Viewer and HTTP Sniffer for IE and Firefox"><span>HttpWatch: An HTTP Viewer and HTTP Sniffer for IE and Firefox</span></a></h1>
+
+4
+		
+
+19
+		<h2>HTTP Gallery</h2>
+
+4
+		
+
+2
+
+
+4
+		
+
+17
+	<ul class="topmenu">
+
+53
+		<li><a href="../../" id="homeTab" title="The HttpWatch Home Page">Home</a></li>
+
+56
+		<li><a href="../../buy/" id="buyTab" title="Pricing and Online Store">Buy</a></li>
+
+5f
+		<li><a href="../../download/" id="downloadTab" title="Download HttpWatch">Download</a></li>
+
+7d
+		<li><a href="../../support/" id="supportTab" title="How to contact us if you have questions or problems">Support</a></li>
+
+77
+		<li><a href="../../company/" id="companyTab" title="Simtec Limited - the company behind HttpWatch">Company</a></li>
+
+a4
+		<li style="padding-right: 9px;"><a href="http://blog.httpwatch.com" id="blogTab" title="The HttpWatch Blog - News, views and all things HttpWatch">Blog</a></li>
+
+66
+		<li class="lastMenuTab"><a href="../../search/" id="searchTab" title="Search Site">&nbsp;</a></li>
+
+2b
+	</ul><h3>The easy way to view HTTP!</h3>
+
+2
+
+
+9
+	</div>
+
+2
+
+
+17
+	<div id="sub-outer">
+
+18
+		<div id="sub-inner">
+
+15
+			<div id="left"> 
+
+5
+			
+
+3
+	
+
+2
+
+
+17
+	<ul class="leftnav">
+
+38
+		<li class="firstNav"><strong>HttpWatch</strong></li>
+
+4
+		
+
+42
+		<li><a href="../../"><span class="bullet"></span>Home</a></li>
+
+4f
+		<li><a href="../../download/"><span class="bullet"></span>Download</a></li>
+
+2
+
+
+2a
+		<li><strong>HTTP Gallery</strong></li>
+
+2
+
+
+65
+		<li><a href="../introduction/" id="introLk" ><span class="bullet"></span>1. Introduction</a></li>
+
+5d
+		<li><a href="../headers/" id="headersLk" ><span class="bullet"></span>2. Headers</a></li>
+
+60
+		<li><a href="../errors/" id="statusLk" ><span class="bullet"></span>3. Status Codes</a></li>
+
+5d
+		<li><a href="../cookies/" id="cookiesLk" ><span class="bullet"></span>4. Cookies</a></li>
+
+5d
+		<li><a href="../caching/" id="cachingLk" ><span class="bullet"></span>5. Caching</a></li>
+
+5d
+		<li><a href="../methods/" id="methodsLk" ><span class="bullet"></span>6. Methods</a></li>
+
+69
+		<li><a href="../redirection/" id="redirectionLk" ><span class="bullet"></span>7. Redirection</a></li>
+
+69
+		<li><a href="../compression/" id="compressionLk" ><span class="bullet"></span>8. Compression</a></li>
+
+56
+		<li><a href="./" id="encodingLk" ><span class="bullet"></span>9. Encoding</a></li>
+
+69
+		<li><a href="../authentication/" id="authLk" ><span class="bullet"></span>10. Authentication</a></li>
+
+57
+		<li><a id="httpsLk" href="../https/"><span class="bullet"></span>11. HTTPS</a></li>
+
+54
+		<li><a id="ajaxLk" href="../ajax/"><span class="bullet"></span>12. AJAX</a></li>
+
+4
+		
+
+26
+		<li><strong>Company</strong></li>	
+
+4e
+		<li><a href="../../company/"><span class="bullet"></span>About Us</a></li>
+
+8
+	</ul>
+
+2
+
+
+2
+
+
+8
+</div>
+
+2
+
+
+15
+			<div id="right">
+
+21
+				<div id="sub-right-inner"> 
+
+6
+				
+
+6
+				
+
+46
+				<h2 class="toph2">9. Content Length &amp; Transfer Encoding</h2>
+
+42
+				<p>When an HTTP client is reading a response message from a 
+
+42
+					server it needs to know when it has reached the end of the 
+
+3f
+					message. This is particularly important with persistent 
+
+42
+					(keep alive) connections, because a connection can only be 
+
+3e
+					re-used by another HTTP transaction after the response 
+
+3f
+					message has been fully received. The following sections 
+
+43
+					describe the four ways in which an HTTP server can indicate 
+
+2b
+					the end of the response message:</p>
+
+2e
+				<h3>9.1 Connection Closed by Server</h3>
+
+38
+				<p>The connection can be closed at the end of the 
+
+3a
+						response message by the server, but this prevents 
+
+26
+						connections being re-used.</p>
+
+28
+				<h3>9.2 Content-Length Header</h3>
+
+3e
+				<p>The length of the content after the response headers 
+
+41
+						can be specified in bytes with the <b>Content-Length</b> 
+
+12
+						header</p>
+
+29
+				<h3>9.3 Implied Content Length</h3>
+
+3a
+				<p>Some types of responses, such as <b>304</b>, are 
+
+3f
+						defined to never have content and therefore the client 
+
+3e
+						can assume that the response message is terminated by 
+
+2e
+						the double CRLF after the headers.</p>
+
+23
+				<h3>9.4 Chunked Encoding</h3>
+
+3f
+				<p>The content can be broken up into a number of chunks; 
+
+3f
+						each of which is prefixed by its size in bytes. A zero 
+
+41
+						size chunk indicates the end of the response message. If 
+
+76
+						a server is using chunked encoding it must set the <b>Transfer-Encoding</b> header to &quot;chunked&quot;.</p>
+
+43
+				<p>Chunked encoding is useful when a large amount of data is 
+
+3e
+					being returned to the client and the total size of the 
+
+42
+					response may not be known until the request has been fully 
+
+44
+					processed. An example of this is generating an HTML table of 
+
+55
+					results from a database query. If you wanted to use the <b>Content-Length</b> 
+
+43
+					header you would have to buffer the whole result set before 
+
+41
+					calculating the total content size. However, with chunked 
+
+44
+					encoding you could just write the data one row at a time and 
+
+3e
+					write a zero sized chunk when the end of the query was 
+
+14
+					reached. </p>
+
+18
+				<h3>Example 9</h3>
+
+67
+				<div class="exampleBox">This page has been supplied* to your browser using one chunk per line of 
+
+2a
+					HTML.<form method="post" action="">
+
+15
+						<p>&nbsp;</p>
+
+b
+						<p>
+
+70
+						<input type="button" value="Refresh this page" name="refreshBtn" onclick="location.reload( true )"/></p>
+
+29
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+c
+						</p>
+
+40
+						<p>(* if you are accessing this page through a proxy it 
+
+28
+						may remove the chunked encoding)
+
+c
+						</p>
+
+14
+					</form></div>
+
+2d
+				<div class="rounded_blue_box" style="">
+
+1e
+					<div class="top"></div>
+
+1f
+					<div class="galleryBox">
+
+3e
+						<p><strong>Using HttpWatch with Example 9</strong></p>
+
+3a
+						<p>To view the chunked response discussed on this 
+
+12
+							page:</p>
+
+c
+						<ol>
+
+3a
+							<li>Open the HttpWatch window by clicking on the 
+
+2c
+								HttpWatch icon on the toolbar</li>
+
+67
+							<li>Click on <font face="Courier New" size="2"><b>Record</b></font> to start logging requests 
+
+1b
+								in HttpWatch</li>
+
+3a
+							<li>Click on the <b>Refresh</b> button above</li>
+
+38
+							<li>Select the entry for this HTML page and go 
+
+10
+								to the
+
+21
+								<b>Streams</b> tab</li>
+
+37
+							<li>The number of chunks is displayed in this 
+
+3b
+								tab and the format of the length prefixed chunks 
+
+36
+								can be seen after the response headers.</li>
+
+13
+						</ol></div>
+
+24
+					<div class="bot"></div></div>
+
+39
+				<p><a href="../compression/">&lt;&lt; Previous (8. 
+
+2b
+							Compression)</a>&nbsp;&nbsp;&nbsp;
+
+39
+							<a href="../authentication/">Next &gt;&gt; (10. 
+
+21
+							Authentication) </a></p>
+
+9
+							
+
+c
+				</div>
+
+b
+			</div>
+
+20
+			<div class="clearme"></div>
+
+a
+		</div>
+
+9
+	</div>
+
+8
+</div>
+
+2
+
+
+12
+	<div id="foot">
+
+4
+		
+
+68
+	<div id="footer" style="margin-left: auto; margin-right: auto;" title="Companies who use HttpWatch">	
+
+1d
+		<h2>Featured Clients</h2>
+
+40
+		<a href="../../customers.htm" class="featured_clients" ></a>
+
+5e
+		<p class="left-links">Copyright &copy; 2002 - 2010 Simtec Limited, All Rights Reserved</p>
+
+1a
+			<p class="mid-links">
+
+52
+				<a href="../../copyright.htm" title="Copyright information">Copyright</a> | 
+
+73
+				<a href="../../buy/terms_and_conditions.htm" title="Our Terms &amp; Conditions">Terms &amp; Conditions</a> | 
+
+5b
+				<a href="../../privacy_policy.htm" title="View our Privacy Policy">Privacy Policy</a>
+
+9
+			</p>
+
+1c
+			<p class="right-links">
+
+56
+				<a href="../../support/" title="How to get support for HttpWatch">Support</a> | 
+
+47
+				<a href="../../company/" title="How to contact us">Contact</a> | 
+
+54
+				<a href="../../sitemap.htm" title="An overview of this website">Sitemap</a> | 
+
+3c
+				<a href="../../search/" title="Search Site">Search</a>
+
+9
+			</p>
+
+9
+	</div>
+
+8
+</div>
+
+2
+
+
+2
+
+
+22
+	<script type="text/javascript">
+
+3d
+	var gaJsHost = (("https:" == document.location.protocol) ?
+
+23
+	"https://ssl." : "http://www.");
+
+39
+	document.write(unescape("%3Cscript src='" + gaJsHost +
+
+4a
+	"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+c
+	</script>
+
+3
+	
+
+22
+	<script type="text/javascript">
+
+35
+	var pageTracker = _gat._getTracker("UA-533344-1");
+
+2f
+	pageTracker._setDomainName("httpwatch.com");
+
+2e
+	pageTracker._setCampNOKey("ga_nooverride");
+
+2f
+	pageTracker._addIgnoredOrganic("httpwatch");
+
+1b
+	pageTracker._initData();
+
+20
+	pageTracker._trackPageview();
+
+c
+	</script>
+
+2
+
+
+2
+
+
+2
+
+
+9
+</body>
+
+9
+</html>
+
+2
+
+
+0
+
+GET /images/spriteme2.png HTTP/1.1
+Host: www.httpwatch.com
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 115
+Connection: keep-alive
+Referer: http://www.httpwatch.com/css/simtecv6.css?v9
+Cookie: __utma=27892197.1457797105.1272838090.1273036418.1273123201.8; __utmz=27892197.1273123201.8.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=transfer%20encoding%20chunked; __utmc=27892197; __utmb=27892197.6.10.1273123201
+Pragma: no-cache
+Cache-Control: no-cache
+
+HTTP/1.1 200 OK
+Cache-Control: Public
+Content-Length: 344
+Content-Type: image/png
+Expires: Mon, 31 Dec 2035 12:00:00 GMT
+Last-Modified: Tue, 22 Sep 2009 15:11:30 GMT
+Accept-Ranges: bytes
+ETag: "7e5cbdf6963bca1:438"
+Server: Microsoft-IIS/6.0
+X-Powered-By: ASP.NET
+Date: Thu, 06 May 2010 05:32:11 GMT
+
+‰PNG
+
+   IHDR         ù   PLTEÂæÿäôşûşÿşşÿæõşâóşíøşë÷şáóşışÿôûÿğùÿüşÿùıÿ÷ûÿşÿÿàòşéöşñùÿßòşâôşòúÿãôşøüÿúıÿèöşì÷şïùşõûÿê÷şöûÿåôşóúÿòùÿé÷şçõş÷üÿùüÿîøşîùşàóşûıÿæôşçöşôúÿÑÏÿÿÿéöÿ   ƒIDATxÚìĞGÂ0EQÓ{ï5Ä%ö¿;şûv@H˜!!ŸÜ+ìSùç0eYÖuZŞÖP{‰HQ4=¥Ôu3RHÇÛCÛK’4=3‡8Wp!·¾s$g2fZëcFly^¯YÏiT&}öeğ5övğ¿"ìC€ ¤)éäXpfÉ    IEND®B`‚
