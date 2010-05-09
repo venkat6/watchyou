@@ -7,13 +7,6 @@ import org.jnetpcap.protocol.network.Ip4;
 import org.jnetpcap.protocol.tcpip.*;
 import org.jnetpcap.protocol.tcpip.Http.*;
 
-import util.PathHash;
-
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
-
-import gui.BareBonesBrowserLaunch;
 
 public class HttpParser implements HttpHandler {
 

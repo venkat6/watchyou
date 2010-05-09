@@ -8,7 +8,7 @@ import org.jnetpcap.packet.*;
 import org.jnetpcap.protocol.tcpip.Http;
 import org.jnetpcap.protocol.tcpip.Http.Response;
 
-import util.PathHash;
+import utilities.PathHash;
 
 public class CacheMap { // implements Iterable<HttpBag>
 
@@ -38,7 +38,7 @@ public class CacheMap { // implements Iterable<HttpBag>
 		try {
 			if(http.hasField(Response.ResponseCode) && !http.fieldValue(Response.ResponseCode).equals("304"))
 			{
-				bag.saveToDisk(PathHash.GetHashedFilePath((bag.getUrl())), dataPacket);
+				bag.saveToDisk(PathHash.GetHashedFilePath((bag.getRelativeUrl())), dataPacket);
 				if(http.fieldValue(Response.Content_Type).contains("text/html"))
 				{
 					String line = bag.getFirstLine();
@@ -48,8 +48,8 @@ public class CacheMap { // implements Iterable<HttpBag>
 						Pattern htmlPattern = Pattern.compile("\\A\\s*<html.*$", Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
 						if(doctypePattern.matcher(line).matches() || htmlPattern.matcher(line).matches())
 						{
-							System.out.println("Navigating to url: " + bag.getUrl() + "\n\twith Hashed URL: " + PathHash.GetHashedFilePath(bag.getUrl()) + "\n");
-							Main._gui.navigate(PathHash.GetHashedUrl(bag.getUrl()));
+							System.out.println("Navigating to url: " + bag.getUrl() + "\n\twith Hashed URL: " + PathHash.GetHashedFilePath(bag.getRelativeUrl()) + "\n");
+							Main._gui.navigate(PathHash.GetHashedUrl(bag.getRelativeUrl()));
 						}
 					}
 				}
