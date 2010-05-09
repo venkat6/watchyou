@@ -31,6 +31,12 @@ public class HttpBag {
 		return http.fieldValue(Request.Host) + http.fieldValue(Request.RequestUrl);
 	}
 	
+	public String getRelativeUrl()
+	{
+		Http http = _requestHeader.getHeader(new Http());
+		return http.fieldValue(Request.RequestUrl);
+	}
+	
 	public String getFirstLine()
 	{
 		File file = new File(_filename);

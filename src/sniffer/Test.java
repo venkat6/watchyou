@@ -12,7 +12,7 @@ import org.jnetpcap.protocol.tcpip.HttpAnalyzer;
 import org.jnetpcap.protocol.tcpip.HttpHandler;
 import org.jnetpcap.protocol.tcpip.Http.ContentType;
 
-import util.PathHash;
+import utilities.PathHash;
 
 import java.security.MessageDigest;
 import java.util.regex.*;
