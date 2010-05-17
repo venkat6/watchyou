@@ -6,6 +6,10 @@ import java.awt.GridBagConstraints;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+
+import sniffer.HttpBag;
 
 public class Home extends JPanel {
 
@@ -44,7 +48,7 @@ public class Home extends JPanel {
 	 */
 	private JTree getJTree() {
 		if (jTree == null) {
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode("tewst");
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode("root");
 			jTree = new JTree(node);
 			
 		}
@@ -62,6 +66,15 @@ public class Home extends JPanel {
 			treeView.setViewportView(getJTree());
 		}
 		return treeView;
+	}
+
+	
+	public void addTreeNode(HttpBag bag)
+	{
+		JTree tree = getJTree();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode)tree.getModel().getRoot();
+		root.add(new DefaultMutableTreeNode(bag));
+		tree.expandPath(new TreePath(root));
 	}
 
 }

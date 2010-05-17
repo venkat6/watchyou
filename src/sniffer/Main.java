@@ -42,17 +42,17 @@ public class Main {
 			        : "No description available";
 			System.out.printf("#%d: %s [%s]\n", i++, device.getName(), description);
 		}
-
+/*
 		PcapIf device = alldevs.get(0); // We know we have atleast 1 device
 		System.out
 		    .printf("\nChoosing '%s' on your behalf:\n",
 		        (device.getDescription() != null) ? device.getDescription()
 		            : device.getName());
-		
+	*/	
 		
         
-		//Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, 1, 4444, errbuf); // wireless
-        Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // ethernet
+		Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, Pcap.MODE_PROMISCUOUS, 4444, errbuf); // steven's wireless
+        //Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // steven's ethernet
         //Pcap pcap= Pcap.openOffline("chunked.pcap", errbuf);
         if (pcap == null) {
                 System.err.println(errbuf.toString());

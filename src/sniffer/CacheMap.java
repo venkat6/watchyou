@@ -33,13 +33,17 @@ public class CacheMap { // implements Iterable<HttpBag>
 			//mainMap.put(ip.sourceToInt(), new HashMap<Integer, HttpBag>());
 		}
 		HttpBag bag = mainMap.get(ip).get(port);
+		if(bag == null)
+		{
+			System.err.println("Task #1 - No request found for this response"); // TODO - what to do here?
+		}
 		bag.setResponseHeaderPacket(headerPacket);
 		Http http = bag.getResponseHeaderPacket().getHeader(new Http());
 		try {
-			if(http.hasField(Response.ResponseCode) && !http.fieldValue(Response.ResponseCode).equals("304"))
+			if(http.hasField(Response.ResponseCode) && http.fieldValue(Response.ResponseCode).equals("200"))
 			{
 				bag.saveToDisk(PathHash.GetHashedFilePath((bag.getRelativeUrl())), dataPacket);
-				if(http.fieldValue(Response.Content_Type).contains("text/html"))
+				if(http.hasField(Response.Content_Type) && http.fieldValue(Response.Content_Type).contains("text/html"))
 				{
 					String line = bag.getFirstLine();
 					if(line != null)
@@ -50,15 +54,12 @@ public class CacheMap { // implements Iterable<HttpBag>
 						{
 							System.out.println("Navigating to url: " + bag.getUrl() + "\n\twith Hashed URL: " + PathHash.GetHashedFilePath(bag.getRelativeUrl()) + "\n");
 							Main._gui.navigate(PathHash.GetHashedUrl(bag.getRelativeUrl()));
+							Main._gui.getStatsPanel().addTreeNode(bag);
 						}
 					}
 				}
 			}
 		} 
-		catch (NullPointerException e)
-		{
-			// do nothing
-		}
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

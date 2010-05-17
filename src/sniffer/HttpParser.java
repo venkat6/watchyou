@@ -23,7 +23,6 @@ public class HttpParser implements HttpHandler {
 			JPacket first = ass.getFragmentSequence().getPacketSequence().get(0);
 			
 			HttpBag bag = processHighLevelHeaders(first, packet, http.getMessageType());
-			//CacheMap.ScanResults();
 			// then call our handler on the http reassembled packet
 			//processHttpPacket(http, http.getMessageType());
 		}

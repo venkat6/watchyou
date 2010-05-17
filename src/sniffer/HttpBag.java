@@ -11,16 +11,14 @@ import org.jnetpcap.protocol.tcpip.Http.Response;
 
 public class HttpBag {
 	
-	private String _url; 
+	private final char[] CRLF = { '\r', '\n' }; 
+	
 	private JPacket _requestHeader;
 	private JPacket _responseHeader;
 	private String _filename;
 	
-	private final char[] CRLF = { '\r', '\n' }; 
-	
 	public HttpBag(JPacket request)
 	{
-		//this._url = url;
 		this._requestHeader = request;
 	}
 	
@@ -51,21 +49,6 @@ public class HttpBag {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public JPacket getRequestPacket()
-	{
-		return _requestHeader;
-	}
-	
-	public JPacket getResponseHeaderPacket()
-	{
-		return _responseHeader;
-	}
-	
-	public void setResponseHeaderPacket(JPacket responseHeader)
-	{
-		this._responseHeader = responseHeader;
 	}
 	
 	public void saveToDisk(String filename, JPacket dataPacket)
@@ -136,4 +119,25 @@ public class HttpBag {
 		}
 		this._filename = filename;
 	}
+	
+	public JPacket getRequestPacket()
+	{
+		return _requestHeader;
+	}
+	
+	public JPacket getResponseHeaderPacket()
+	{
+		return _responseHeader;
+	}
+	
+	public void setResponseHeaderPacket(JPacket responseHeader)
+	{
+		this._responseHeader = responseHeader;
+	}
+	
+	public String toString()
+	{
+		return this.getUrl();
+	}
+	
 }
