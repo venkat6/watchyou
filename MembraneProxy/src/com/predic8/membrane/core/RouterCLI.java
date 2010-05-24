@@ -23,7 +23,7 @@ public class RouterCLI {
 
 	public static final String MEMROUTER_HOME = "MEMROUTER_HOME";
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, InterruptedException {
 
 		CommandLine commandLine = new BasicParser().parse(getOptions(), args);
 		if (commandLine.hasOption('h')) {
@@ -48,7 +48,7 @@ public class RouterCLI {
 		}
 
 		while (true) {
-
+			Thread.sleep(10000); // added by Steven - otherwise it hogs cpu
 		}
 
 	}
