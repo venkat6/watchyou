@@ -1,6 +1,5 @@
 package watchyou.conf;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,14 +16,6 @@ public class Config {
 	
 	static
 	{
-		File f = new File(".");
-		
-		try {
-			System.out.println(f.getCanonicalPath());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		props = new Properties();
 		FileInputStream in = null;
 		try {
