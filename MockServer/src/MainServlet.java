@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utilities.PathHash;
+import watchyou.conf.Config;
+import watchyou.util.PathHash;
+
+
 
 /**
  * Servlet implementation class MainServlet
@@ -38,9 +41,10 @@ public class MainServlet extends HttpServlet {
     	}
 	    else
     	{
-	    	filename = "C:/" + request.getPathInfo();
+	    	filename = Config.getOutputDir() + request.getPathInfo();
     	}
 	    File file = new File(filename);
+	    System.out.println("Request for file: " + filename);
 	    int counter = 0;
 	    while(!file.exists() && counter < 15)
 	    {
