@@ -1,28 +1,17 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.border.EtchedBorder;
-
-import org.jnetpcap.Pcap;
-import org.jnetpcap.PcapIf;
-import org.jnetpcap.packet.JRegistry;
-import org.jnetpcap.packet.analysis.JController;
-import org.jnetpcap.protocol.tcpip.HttpAnalyzer;
-import org.mozilla.browser.MozillaPanel;
-import org.mozilla.browser.MozillaWindow;
-
-import sniffer.HttpParser;
-
-import java.awt.GridBagLayout;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.mozilla.browser.MozillaExecutor;
+import org.mozilla.browser.MozillaPanel;
+import org.mozilla.browser.XPCOMUtils;
+import org.mozilla.interfaces.nsIPrefBranch;
+
+import watchyou.conf.Config;
 
 public class MainFrame extends JFrame {
 
@@ -78,6 +67,16 @@ public class MainFrame extends JFrame {
 		if (browserPanel == null) {
 			try {
 				browserPanel = new MozillaPanel();
+				// set the HTTP proxy we are going to use in the browser
+				MozillaExecutor.mozSyncExec(new Runnable() { public void run() {
+				    nsIPrefBranch pref =
+				    	XPCOMUtils.getService("@mozilla.org/preferences-service;1",
+				    			nsIPrefBranch.class);
+				    pref.setCharPref("network.proxy.http", Config.getProxyHost());
+				    pref.setIntPref("network.proxy.http_port", Config.getProxyPort());
+				    pref.setIntPref("network.proxy.type", 1);
+				}});
+
 				//browserPanel.setBorder(BorderFactory.createTitledBorder(new EtchedBorder(EtchedBorder.RAISED), "Embedded browser"));
 				//browserPanel.setMinimumSize(new Dimension(500, 800));
 			} catch (Exception e) {
