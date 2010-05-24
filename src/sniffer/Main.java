@@ -6,6 +6,8 @@ import org.jnetpcap.packet.*;
 import org.jnetpcap.packet.analysis.JController;
 import org.jnetpcap.protocol.tcpip.*;
 
+import watchyou.conf.Config;
+
 import gui.MainFrame;
 
 import java.util.ArrayList;
@@ -51,7 +53,9 @@ public class Main {
 	*/	
 		
         
-		Pcap pcap= Pcap.openLive("\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}", 65535, Pcap.MODE_PROMISCUOUS, 4444, errbuf); // steven's wireless
+		Pcap pcap= Pcap.openLive(Config.getCaptureDevice(), 65535, Pcap.MODE_PROMISCUOUS, 4444, errbuf); // config device
+
+		//Pcap pcap= Pcap.openLive("wlan0", 65535, Pcap.MODE_PROMISCUOUS, 4444, errbuf); // steven's wireless
         //Pcap pcap= Pcap.openLive("\\Device\\NPF_{56F5978B-5E2C-4FFF-9CD1-C6D8124A20D3}", 65535, 1, 4444, errbuf); // steven's ethernet
         //Pcap pcap= Pcap.openOffline("chunked.pcap", errbuf);
         if (pcap == null) {

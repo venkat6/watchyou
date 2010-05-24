@@ -11,8 +11,10 @@
 	<classpathentry kind="lib" path="lib/mozswing-2.0beta2/lib/MozillaInterfaces-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jnetjava.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Steven/workspace/HTTPSniffer/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="HTTPSniffer/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/MockServer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WatchYouUtil"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

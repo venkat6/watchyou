@@ -8,7 +8,7 @@ import org.jnetpcap.packet.*;
 import org.jnetpcap.protocol.tcpip.Http;
 import org.jnetpcap.protocol.tcpip.Http.Response;
 
-import utilities.PathHash;
+import watchyou.util.PathHash;
 
 public class CacheMap { // implements Iterable<HttpBag>
 

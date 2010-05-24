@@ -1,21 +1,6 @@
 package sniffer;
 
-import org.jnetpcap.Pcap;
-import org.jnetpcap.PcapIf;
-import org.jnetpcap.packet.JPacket;
-import org.jnetpcap.packet.JPacketHandler;
-import org.jnetpcap.packet.JRegistry;
-import org.jnetpcap.packet.analysis.JController;
-import org.jnetpcap.protocol.application.Html;
-import org.jnetpcap.protocol.tcpip.Http;
-import org.jnetpcap.protocol.tcpip.HttpAnalyzer;
-import org.jnetpcap.protocol.tcpip.HttpHandler;
-import org.jnetpcap.protocol.tcpip.Http.ContentType;
-
-import utilities.PathHash;
-
-import java.security.MessageDigest;
-import java.util.regex.*;
+import watchyou.util.PathHash;
 
 public class Test
 {
