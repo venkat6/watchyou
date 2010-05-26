@@ -10,13 +10,14 @@ public class Test
 			Pattern p = Pattern.compile("\\A\\s*<!DOCTYPE HTML.*$", Pattern.MULTILINE);
 			System.out.println(p.matcher(body).matches());
 			*/
-        	
+        	/*
         	byte[] arr = new byte[2];
         	arr[0] = (byte)'\r';
         	arr[1] = (byte)'\n';
         	System.out.println(arr.toString());
         	System.out.println(PathHash.getHex(arr));
-        	
+        	*/
+        	int ip = -1062731416; // 192.168.1.104
         	
         }
        

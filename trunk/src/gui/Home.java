@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
@@ -48,9 +49,8 @@ public class Home extends JPanel {
 	 */
 	private JTree getJTree() {
 		if (jTree == null) {
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode("root");
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode("Pages");
 			jTree = new JTree(node);
-			
 		}
 		return jTree;
 	}
@@ -72,9 +72,16 @@ public class Home extends JPanel {
 	public void addTreeNode(HttpBag bag)
 	{
 		JTree tree = getJTree();
+		
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)tree.getModel().getRoot();
 		root.add(new DefaultMutableTreeNode(bag));
-		tree.expandPath(new TreePath(root));
+
+		// we have to reload the model before it can expand the nodes
+		((DefaultTreeModel)tree.getModel()).reload();
+		jTree.expandPath(new TreePath(root));
+		jTree.repaint();
+		treeView.repaint();
+		
 	}
 
 }
