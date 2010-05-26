@@ -1,0 +1,19 @@
+# This file should be in 2 locations (one shortcutted from the other is optimal)
+
+# 1. HttpSniffer project root (in the HTTPSniffer project directory) - where this file is
+# 2. Your eclipse home directory (~ on linux, or your eclipse install dir on windows)
+
+# HOW TO SET UP:
+# - YOU SHOULD COPY THIS FILE TO 'watchyou.properties' (without the .template file extension) edit it,
+#	AND THEN COPY IT TO YOUR ECLIPSE HOME DIRECTORY 
+#
+
+# Where to save all the captured .sniffed files
+outputdir=C:\\
+
+# the unique id of the device to capture on
+capture.device=\\Device\\NPF_{7487DF0E-2B06-4660-9ED2-6E57E57094AA}
+
+# where to point the browser to as a proxy
+proxy.host=localhost
+proxy.port=8888

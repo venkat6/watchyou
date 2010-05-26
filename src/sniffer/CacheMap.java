@@ -29,13 +29,15 @@ public class CacheMap { // implements Iterable<HttpBag>
 	{
 		if(!mainMap.containsKey(ip))
 		{
-			System.err.println("ERROR - key does not exist");
+			System.err.printf("ERROR - key does not exist for IP %s\n",getIPString(ip));
 			//mainMap.put(ip.sourceToInt(), new HashMap<Integer, HttpBag>());
+			return null;
 		}
 		HttpBag bag = mainMap.get(ip).get(port);
 		if(bag == null)
 		{
-			System.err.println("Task #1 - No request found for this response"); // TODO - what to do here?
+			System.err.printf("Task #1 - No request found for this response - IP: %s, Port: %d\n",getIPString(ip), port); // TODO - what to do here?
+			return null;
 		}
 		bag.setResponseHeaderPacket(headerPacket);
 		Http http = bag.getResponseHeaderPacket().getHeader(new Http());
@@ -85,5 +87,13 @@ public class CacheMap { // implements Iterable<HttpBag>
 		}
 		System.out.println("---------------------------------------");
 
+	}
+	
+	private static String getIPString(int ip)
+	{
+		return  ((ip >> 24 ) & 0xFF) + "." +
+		        ((ip >> 16 ) & 0xFF) + "." +
+		        ((ip >>  8 ) & 0xFF) + "." +
+		        ( ip         & 0xFF);
 	}
 }
